@@ -1,0 +1,18 @@
+body { font-family: Arial, sans-serif; background: #f5f5f5; }
+.products { display: flex; flex-wrap: wrap; gap: 20px; }
+.card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #ccc; padding: 16px; width: 220px; }
+.card img { width: 100%; height: 140px; object-fit: cover; border-radius: 4px; }
+a { margin: 10px; display: inline-block; }
+.add-product-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    background: #4caf50;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.add-product-btn:hover {
+    background: #388e3c;
+}

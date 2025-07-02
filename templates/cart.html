@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Корзина{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style_cart.css') }}">
+{% endblock %}
+{% block content %}
+<h1>Корзина</h1>
+{% if cart_items %}
+  <ul>
+    {% for item in cart_items %}
+      <li>
+        <b>{{ item.product.name }}</b> — {{ item.quantity }} шт. ({{ item.product.price }}₸/шт)
+        <a href="{{ url_for('remove_from_cart', product_id=item.product.id) }}">Удалить</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <b>Итого: {{ total }}₸</b>
+  <form method="post" action="{{ url_for('make_order') }}">
+    <button type="submit">Оформить заказ</button>
+  </form>
+{% else %}
+  <p>Корзина пуста.</p>
+{% endif %}
+{% endblock %}

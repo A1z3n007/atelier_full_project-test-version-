@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Мои заказы{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style_orders.css') }}">
+{% endblock %}
+{% block content %}
+<h1>Мои заказы</h1>
+{% for order in orders %}
+  <div class="order">
+    <b>Товар:</b> {{ order.product.name }}<br>
+    <b>Количество:</b> {{ order.quantity }}<br>
+    <b>Цена:</b> {{ order.product.price }}₸<br>
+  </div>
+  <hr>
+{% else %}
+  <p>У вас пока нет заказов.</p>
+{% endfor %}
+{% endblock %}

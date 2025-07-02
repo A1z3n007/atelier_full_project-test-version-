@@ -1,0 +1,6 @@
+body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; }
+nav { background: #333; padding: 10px; }
+nav a { color: #fff; margin-right: 15px; text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+.flashes { color: red; }
+main { padding: 20px; }

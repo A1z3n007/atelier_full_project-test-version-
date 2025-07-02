@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Добавить товар{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style_admin.css') }}">
+{% endblock %}
+{% block content %}
+<h1>Добавить товар</h1>
+<form method="post">
+  <input type="text" name="name" placeholder="Название" required><br>
+  <textarea name="description" placeholder="Описание"></textarea><br>
+  <input type="number" name="price" placeholder="Цена" required><br>
+  <input type="text" name="image_url" placeholder="Ссылка на картинку"><br>
+  <button type="submit">Добавить</button>
+</form>
+{% endblock %}

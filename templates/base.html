@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Ателье{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_base.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('catalog') }}">Каталог</a>
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('cart') }}">Корзина</a>
+            <a href="{{ url_for('orders') }}">Мои заказы</a>
+            <a href="{{ url_for('logout') }}">Выйти</a>
+            {% if session.get('is_admin') %}
+                <a href="{{ url_for('admin') }}">Админка</a>
+            {% endif %}
+        {% else %}
+            <a href="{{ url_for('login') }}">Вход</a>
+            <a href="{{ url_for('register') }}">Регистрация</a>
+        {% endif %}
+    </nav>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

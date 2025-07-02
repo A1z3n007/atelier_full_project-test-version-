@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог товаров</title>
+    {% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_catalog.css') }}">
+    {% endblock %}
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}Каталог товаров{% endblock %}
+    {% block content %}
+    <h1>Каталог товаров</h1>
+    {% if session.get('is_admin') %}
+        <a href="{{ url_for('add_product') }}" class="add-product-btn">Добавить товар</a>
+    {% endif %}
+    <div class="products">
+    {% for product in products %}
+      <div class="card">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <b>{{ product.price }}₸</b>
+        {% if session.get('user_id') %}
+          <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post">
+            <input type="number" name="quantity" value="1" min="1">
+            <button type="submit">В корзину</button>
+          </form>
+        {% endif %}
+      </div>
+    {% endfor %}
+    </div>
+    {% endblock %}
+</body>
+</html>
